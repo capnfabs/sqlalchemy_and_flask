@@ -10,15 +10,18 @@ import pytest
 from flaskr.db import get_session
 from flaskr.models import User
 
-def test_working_outside_of_app_context():
+def test_working_outside_of_app_context(app):
     #with app.app_context():
     session = get_session()
     new_user = User(username="kelly", password="kelly")
     session.add(new_user)
     session.commit()
-    assert len(session.query(User).filter(User.username=="kelly2").all()) == 1
+    assert len(session.query(User).filter(User.username=="kelly").all()) == 1
 
-def test_database_insertion_and_persistence_outside_of_app_context():
+def test_again(app):
+    test_working_outside_of_app_context(app)
+
+def test_database_insertion_and_persistence_outside_of_app_context(app):
     #with app.app_context():
     session = get_session()
     new_user = User(username="kelly", password="kelly")

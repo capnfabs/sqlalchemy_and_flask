@@ -56,7 +56,3 @@ def reset_db_command():
 def init_app(app):
     app.teardown_appcontext(end_session)
     app.cli.add_command(reset_db_command)
-
-def init_app(app):
-    app.teardown_appcontext(end_session)
-    app.cli.add_command(reset_db_command)

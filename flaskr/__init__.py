@@ -14,8 +14,11 @@ def create_app(test_config=None):
         DATABASE=f"sqlite:////{os.path.join(app.instance_path, 'flaskr.db')}",
     )
 
+    print('Initing app, ')
+
     if test_config is None:
         # load the instance config, if it exists, when not testing
+        raise Exception("Should not happen")
         app.config.from_pyfile('config.py', silent=True)
     else:
         # load the test config if passed in
@@ -34,7 +37,7 @@ def create_app(test_config=None):
     db.init_db()
     db.init_app(app)
 
-    from flaskr.api import create_user
+    #from flaskr.api import create_user
     # a simple page that says hello
     @app.route('/', methods=('GET', 'POST'))
     def hello():
